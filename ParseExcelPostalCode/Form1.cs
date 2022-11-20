@@ -7,6 +7,7 @@ namespace ParseExcelPostalCode
     {
         private List<IndustryJob> industryJobList;
         private List<Industry> industryList;
+        private List<Job> jobList;
 
         public Form1()
         {
@@ -39,12 +40,15 @@ namespace ParseExcelPostalCode
         {
             industryList = ExcelUtil.GenerateIndustryRecordList(industryJobList);
             dgvIndustry.DataSource = industryList;
+            btnGenerateJobRecords.Enabled = true;
             MessageBox.Show(industryList.Count.ToString() + " industry records generated successfully!");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            jobList = ExcelUtil.GenerateJobRecordList(industryJobList, industryList);
+            dgvJob.DataSource = jobList;
+            MessageBox.Show(jobList.Count.ToString() + " job records generated successfully!");
         }
     }
 }

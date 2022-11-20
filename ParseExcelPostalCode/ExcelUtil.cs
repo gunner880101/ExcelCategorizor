@@ -119,5 +119,27 @@ namespace ParseExcelPostalCode
             }
             return industries;
         }
+
+        public static List<Job> GenerateJobRecordList(List<IndustryJob> industryJobs, List<Industry> industries)
+        {
+            List<Job> jobs = new List<Job>();
+            uint currentId = 1;
+            foreach (var item in industryJobs)
+            {
+                uint pid = industries.Where((industry) => industry.name == item.Industry2).First().id;
+                var timestamp = (ulong)Utils.GetCurrentTimestamp();
+                Job temp = new Job()
+                {
+                    id = currentId++,
+                    name = item.Job,
+                    pid = pid,
+                    sort = 1,
+                    create_time = timestamp,
+                    update_time = timestamp,
+                };
+                jobs.Add(temp);
+            }
+            return jobs;
+        }
     }
 }
