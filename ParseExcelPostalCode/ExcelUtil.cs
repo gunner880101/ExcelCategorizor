@@ -1,9 +1,5 @@
 ﻿using ClosedXML.Excel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ParseExcelPostalCode.models;
 
 namespace ParseExcelPostalCode
 {
@@ -74,6 +70,54 @@ namespace ParseExcelPostalCode
                 }
             }
             return result;
+        }
+
+        public static List<Industry> GenerateIndustryRecordList(List<IndustryJob> industryJobs)
+        {
+            List<Industry> industries = new List<Industry>();
+            uint currentId = 1;
+            // generate first-level industries
+            foreach (var item in industryJobs)
+            {
+                if (industries.Exists((industry) => industry.name == item.Industry1))
+                {
+                    continue;
+                }
+                var timestamp = (ulong)Utils.GetCurrentTimestamp();
+                Industry temp = new Industry()
+                {
+                    id = currentId++,
+                    name = item.Industry1,
+                    pid = 0,
+                    level = 1,
+                    sort = 1,
+                    create_time = timestamp,
+                    update_time = timestamp,
+                };
+                industries.Add(temp);
+            }
+            // generate second-level industries
+            foreach (var item in industryJobs)
+            {
+                if (industries.Exists((industry) => industry.name == item.Industry2))
+                {
+                    continue;
+                }
+                var timestamp = (ulong)Utils.GetCurrentTimestamp();
+                uint pid = industries.Where((industry) => industry.name == item.Industry1).First().id;
+                var temp = new Industry()
+                {
+                    id = currentId++,
+                    name = item.Industry2,
+                    pid = pid,
+                    level = 2,
+                    sort = 2,
+                    create_time = timestamp,
+                    update_time = timestamp,
+                };
+                industries.Add(temp);
+            }
+            return industries;
         }
     }
 }

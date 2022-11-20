@@ -1,9 +1,13 @@
 using ClosedXML.Excel;
+using ParseExcelPostalCode.models;
 
 namespace ParseExcelPostalCode
 {
     public partial class Form1 : Form
     {
+        private List<IndustryJob> industryJobList;
+        private List<Industry> industryList;
+
         public Form1()
         {
             InitializeComponent();
@@ -17,11 +21,12 @@ namespace ParseExcelPostalCode
                 string fileExt = Path.GetExtension(file.FileName); //get the file extension
                 if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
                 {
-                    var list = ExcelUtil.ImportExcel<IndustryJob>(file.FileName, "Sheet2");
-                    list = ExcelUtil.FillEmptyCells(list);
-                    list = ExcelUtil.SplitJobs(list);
-                    dataGridView.DataSource = list;
-                    MessageBox.Show(list.Count.ToString() + " records imported successfully!");
+                    industryJobList = ExcelUtil.ImportExcel<IndustryJob>(file.FileName, "Sheet2");
+                    industryJobList = ExcelUtil.FillEmptyCells(industryJobList);
+                    industryJobList = ExcelUtil.SplitJobs(industryJobList);
+                    dataGridView.DataSource = industryJobList;
+                    btnGenerateIndustryRecords.Enabled = true;
+                    MessageBox.Show(industryJobList.Count.ToString() + " records reformatted successfully!");
                 }
                 else
                 {
@@ -29,12 +34,17 @@ namespace ParseExcelPostalCode
                 }
             }
         }
-    }
 
-    public class IndustryJob
-    {
-        public string Industry1 { get; set; }
-        public string Industry2 { get; set; }
-        public string Job { get; set; }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            industryList = ExcelUtil.GenerateIndustryRecordList(industryJobList);
+            dgvIndustry.DataSource = industryList;
+            MessageBox.Show(industryList.Count.ToString() + " industry records generated successfully!");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
