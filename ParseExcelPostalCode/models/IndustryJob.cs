@@ -1,12 +1,9 @@
 ﻿namespace ParseExcelPostalCode.models
 {
-    public class Job
+    public class IndustryJob
     {
-        public uint id { get; set; }
-        public string name { get; set; }
-        public uint pid { get; set; }
-        public uint sort { get; set; }
-        public ulong create_time { get; set; }
-        public ulong update_time { get; set; }
+        public string Industry1 { get; set; }
+        public string Industry2 { get; set; }
+        public string Job { get; set; }
     }
 }

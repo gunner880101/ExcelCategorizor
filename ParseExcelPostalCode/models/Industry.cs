@@ -1,5 +1,4 @@
-﻿
-namespace ParseExcelPostalCode.models
+﻿namespace ParseExcelPostalCode.models
 {
     public class Industry
     {
