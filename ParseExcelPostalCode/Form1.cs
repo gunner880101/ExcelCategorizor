@@ -18,6 +18,8 @@ namespace ParseExcelPostalCode
                 if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
                 {
                     var list = ExcelUtil.ImportExcel<IndustryJob>(file.FileName, "Sheet2");
+                    list = ExcelUtil.FillEmptyCells(list);
+                    list = ExcelUtil.SplitJobs(list);
                     dataGridView.DataSource = list;
                     MessageBox.Show(list.Count.ToString() + " records imported successfully!");
                 }

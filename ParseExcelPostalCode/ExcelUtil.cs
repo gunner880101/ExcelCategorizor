@@ -34,5 +34,46 @@ namespace ParseExcelPostalCode
             }
             return list;
         }
+
+        public static List<IndustryJob> FillEmptyCells(List<IndustryJob> list)
+        {
+            if (list.Count == 0) return list;
+
+            var temp = list[0].Industry1;
+            for(int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Industry1.Length == 0)
+                {
+                    list[i].Industry1 = temp;
+                }
+                else
+                {
+                    temp = list[i].Industry1;
+                }
+            }
+            return list;
+        }
+
+        public static List<IndustryJob> SplitJobs(List<IndustryJob> list)
+        {
+            if (list.Count == 0) return list;
+            List<IndustryJob> result = new List<IndustryJob>();
+            foreach (var item in list)
+            {
+                var jobs = item.Job.Split(" ");
+                foreach (string job in jobs)
+                {
+                    if (job.Length == 0 || job == "") continue;
+                    IndustryJob newItem = new IndustryJob()
+                    {
+                        Industry1 = item.Industry1,
+                        Industry2 = item.Industry2,
+                        Job = job,
+                    };
+                    result.Add(newItem);
+                }
+            }
+            return result;
+        }
     }
 }
