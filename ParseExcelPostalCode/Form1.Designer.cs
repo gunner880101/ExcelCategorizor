@@ -35,6 +35,8 @@
             this.btnGenerateIndustryRecords = new System.Windows.Forms.Button();
             this.btnGenerateJobRecords = new System.Windows.Forms.Button();
             this.dgvJob = new System.Windows.Forms.DataGridView();
+            this.btnExportIndustry = new System.Windows.Forms.Button();
+            this.btnExportJob = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIndustry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJob)).BeginInit();
@@ -108,11 +110,35 @@
             this.dgvJob.Size = new System.Drawing.Size(411, 693);
             this.dgvJob.TabIndex = 6;
             // 
+            // btnExportIndustry
+            // 
+            this.btnExportIndustry.Enabled = false;
+            this.btnExportIndustry.Location = new System.Drawing.Point(628, 739);
+            this.btnExportIndustry.Name = "btnExportIndustry";
+            this.btnExportIndustry.Size = new System.Drawing.Size(122, 44);
+            this.btnExportIndustry.TabIndex = 7;
+            this.btnExportIndustry.Text = "Export as Excel file";
+            this.btnExportIndustry.UseVisualStyleBackColor = true;
+            this.btnExportIndustry.Click += new System.EventHandler(this.btnExportIndustry_Click);
+            // 
+            // btnExportJob
+            // 
+            this.btnExportJob.Enabled = false;
+            this.btnExportJob.Location = new System.Drawing.Point(1101, 740);
+            this.btnExportJob.Name = "btnExportJob";
+            this.btnExportJob.Size = new System.Drawing.Size(144, 43);
+            this.btnExportJob.TabIndex = 8;
+            this.btnExportJob.Text = "Export as Excel file";
+            this.btnExportJob.UseVisualStyleBackColor = true;
+            this.btnExportJob.Click += new System.EventHandler(this.btnExportJob_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 745);
+            this.ClientSize = new System.Drawing.Size(1376, 795);
+            this.Controls.Add(this.btnExportJob);
+            this.Controls.Add(this.btnExportIndustry);
             this.Controls.Add(this.dgvJob);
             this.Controls.Add(this.btnGenerateJobRecords);
             this.Controls.Add(this.btnGenerateIndustryRecords);
@@ -138,5 +164,7 @@
         private Button btnGenerateIndustryRecords;
         private Button btnGenerateJobRecords;
         private DataGridView dgvJob;
+        private Button btnExportIndustry;
+        private Button btnExportJob;
     }
 }

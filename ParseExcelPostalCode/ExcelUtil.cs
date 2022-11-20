@@ -141,5 +141,17 @@ namespace ParseExcelPostalCode
             }
             return jobs;
         }
+
+        public static bool ExportAsExcelFile<T>(String filePath, String sheetName, List<T> list)
+        {
+            bool exported = false;
+            using(IXLWorkbook workbook = new XLWorkbook())
+            {
+                workbook.AddWorksheet(sheetName).FirstCell().InsertTable<T>(list, false);
+                workbook.SaveAs(filePath);
+                exported = true;
+            }
+            return exported;
+        }
     }
 }
