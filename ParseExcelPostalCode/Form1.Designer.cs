@@ -37,9 +37,13 @@
             this.dgvJob = new System.Windows.Forms.DataGridView();
             this.btnExportIndustry = new System.Windows.Forms.Button();
             this.btnExportJob = new System.Windows.Forms.Button();
+            this.btnThirdIndustry = new System.Windows.Forms.Button();
+            this.dgvThirdIndustry = new System.Windows.Forms.DataGridView();
+            this.btnExportThirdIndustry = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIndustry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJob)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThirdIndustry)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRead
@@ -67,13 +71,13 @@
             this.dataGridView.Location = new System.Drawing.Point(12, 41);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(390, 692);
+            this.dataGridView.Size = new System.Drawing.Size(335, 692);
             this.dataGridView.TabIndex = 2;
             // 
             // dgvIndustry
             // 
             this.dgvIndustry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIndustry.Location = new System.Drawing.Point(473, 40);
+            this.dgvIndustry.Location = new System.Drawing.Point(418, 41);
             this.dgvIndustry.Name = "dgvIndustry";
             this.dgvIndustry.RowTemplate.Height = 25;
             this.dgvIndustry.Size = new System.Drawing.Size(411, 693);
@@ -82,7 +86,7 @@
             // btnGenerateIndustryRecords
             // 
             this.btnGenerateIndustryRecords.Enabled = false;
-            this.btnGenerateIndustryRecords.Location = new System.Drawing.Point(408, 308);
+            this.btnGenerateIndustryRecords.Location = new System.Drawing.Point(353, 308);
             this.btnGenerateIndustryRecords.Name = "btnGenerateIndustryRecords";
             this.btnGenerateIndustryRecords.Size = new System.Drawing.Size(59, 75);
             this.btnGenerateIndustryRecords.TabIndex = 4;
@@ -93,7 +97,7 @@
             // btnGenerateJobRecords
             // 
             this.btnGenerateJobRecords.Enabled = false;
-            this.btnGenerateJobRecords.Location = new System.Drawing.Point(890, 308);
+            this.btnGenerateJobRecords.Location = new System.Drawing.Point(835, 308);
             this.btnGenerateJobRecords.Name = "btnGenerateJobRecords";
             this.btnGenerateJobRecords.Size = new System.Drawing.Size(59, 75);
             this.btnGenerateJobRecords.TabIndex = 5;
@@ -104,7 +108,7 @@
             // dgvJob
             // 
             this.dgvJob.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJob.Location = new System.Drawing.Point(955, 41);
+            this.dgvJob.Location = new System.Drawing.Point(900, 41);
             this.dgvJob.Name = "dgvJob";
             this.dgvJob.RowTemplate.Height = 25;
             this.dgvJob.Size = new System.Drawing.Size(411, 693);
@@ -132,11 +136,45 @@
             this.btnExportJob.UseVisualStyleBackColor = true;
             this.btnExportJob.Click += new System.EventHandler(this.btnExportJob_Click);
             // 
+            // btnThirdIndustry
+            // 
+            this.btnThirdIndustry.Enabled = false;
+            this.btnThirdIndustry.Location = new System.Drawing.Point(1317, 308);
+            this.btnThirdIndustry.Name = "btnThirdIndustry";
+            this.btnThirdIndustry.Size = new System.Drawing.Size(59, 75);
+            this.btnThirdIndustry.TabIndex = 9;
+            this.btnThirdIndustry.Text = "Thrid Industry";
+            this.btnThirdIndustry.UseVisualStyleBackColor = true;
+            this.btnThirdIndustry.Click += new System.EventHandler(this.btnThirdIndustry_Click);
+            // 
+            // dgvThirdIndustry
+            // 
+            this.dgvThirdIndustry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThirdIndustry.Location = new System.Drawing.Point(1382, 40);
+            this.dgvThirdIndustry.Name = "dgvThirdIndustry";
+            this.dgvThirdIndustry.RowTemplate.Height = 25;
+            this.dgvThirdIndustry.Size = new System.Drawing.Size(411, 693);
+            this.dgvThirdIndustry.TabIndex = 10;
+            // 
+            // btnExportThirdIndustry
+            // 
+            this.btnExportThirdIndustry.Enabled = false;
+            this.btnExportThirdIndustry.Location = new System.Drawing.Point(1520, 739);
+            this.btnExportThirdIndustry.Name = "btnExportThirdIndustry";
+            this.btnExportThirdIndustry.Size = new System.Drawing.Size(144, 43);
+            this.btnExportThirdIndustry.TabIndex = 11;
+            this.btnExportThirdIndustry.Text = "Export as Excel file";
+            this.btnExportThirdIndustry.UseVisualStyleBackColor = true;
+            this.btnExportThirdIndustry.Click += new System.EventHandler(this.btnExportThirdIndustry_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 795);
+            this.ClientSize = new System.Drawing.Size(1849, 795);
+            this.Controls.Add(this.btnExportThirdIndustry);
+            this.Controls.Add(this.dgvThirdIndustry);
+            this.Controls.Add(this.btnThirdIndustry);
             this.Controls.Add(this.btnExportJob);
             this.Controls.Add(this.btnExportIndustry);
             this.Controls.Add(this.dgvJob);
@@ -151,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIndustry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJob)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThirdIndustry)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -166,5 +205,8 @@
         private DataGridView dgvJob;
         private Button btnExportIndustry;
         private Button btnExportJob;
+        private Button btnThirdIndustry;
+        private DataGridView dgvThirdIndustry;
+        private Button btnExportThirdIndustry;
     }
 }

@@ -142,6 +142,30 @@ namespace ParseExcelPostalCode
             return jobs;
         }
 
+        public static List<Industry> GenerateThirdIndustryRecordList(List<IndustryJob> industryJobs, List<Industry> industries)
+        {
+            List<Industry> jobs = new List<Industry>();
+            uint currentId = 1;
+            uint industryCount = (uint)industries.Count;
+            foreach (var item in industryJobs)
+            {
+                uint pid = industries.Where((industry) => industry.name == item.Industry2).First().id;
+                var timestamp = (ulong)Utils.GetCurrentTimestamp();
+                Industry temp = new Industry()
+                {
+                    id = industryCount + currentId++,
+                    name = item.Job,
+                    pid = pid,
+                    sort = 1,
+                    level = 3,
+                    create_time = timestamp,
+                    update_time = timestamp,
+                };
+                jobs.Add(temp);
+            }
+            return jobs;
+        }
+
         public static bool ExportAsExcelFile<T>(String filePath, String sheetName, List<T> list)
         {
             bool exported = false;

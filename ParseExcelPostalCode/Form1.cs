@@ -8,6 +8,8 @@ namespace ParseExcelPostalCode
         private List<IndustryJob> industryJobList;
         private List<Industry> industryList;
         private List<Job> jobList;
+        private List<Industry> thirdIndustryList;
+        private List<Industry> totalIndustryList;
 
         public Form1()
         {
@@ -49,6 +51,7 @@ namespace ParseExcelPostalCode
         {
             jobList = ExcelUtil.GenerateJobRecordList(industryJobList, industryList);
             dgvJob.DataSource = jobList;
+            btnThirdIndustry.Enabled = true;
             btnExportJob.Enabled = true;
             MessageBox.Show(jobList.Count.ToString() + " job records generated successfully!");
         }
@@ -86,6 +89,41 @@ namespace ParseExcelPostalCode
                 if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
                 {
                     if (ExcelUtil.ExportAsExcelFile<Job>(file.FileName, "Job", jobList))
+                    {
+                        MessageBox.Show("Excel file exported successfuly! File is located in " + file.FileName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Exporting Error!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose.xls or.xlsx file only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error
+            }
+        }
+
+        private void btnThirdIndustry_Click(object sender, EventArgs e)
+        {
+            thirdIndustryList = ExcelUtil.GenerateThirdIndustryRecordList(industryJobList, industryList);
+            totalIndustryList = new List<Industry>();
+            totalIndustryList = industryList;
+            totalIndustryList.AddRange(thirdIndustryList);
+            dgvThirdIndustry.DataSource = totalIndustryList;
+            btnExportThirdIndustry.Enabled = true;
+            MessageBox.Show(totalIndustryList.Count.ToString() + " total records generated successfully!");
+        }
+
+        private void btnExportThirdIndustry_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog file = new SaveFileDialog(); //open dialog to choose file
+            if (file.ShowDialog() == DialogResult.OK) //if there is a file chosen by the user
+            {
+                string fileExt = Path.GetExtension(file.FileName); //get the file extension
+                if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
+                {
+                    if (ExcelUtil.ExportAsExcelFile<Industry>(file.FileName, "Industry", totalIndustryList))
                     {
                         MessageBox.Show("Excel file exported successfuly! File is located in " + file.FileName);
                     }
